@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MDIA 2294: WK1_EX4</title>
+</head>
+<body>
+    <h1> MDIA 2294: WK1_EX4 </h1>
+    <div id="result"> Sample Text 1 </div>
+    <div>
+        Change Colour: <input type="text" id="color" />
+        <button id="color-btn" onclick="change_color()"> Apply </button>
+    </div>
+    <script>
+        // Notes from Airrick:
+        //  Create a function (set of instructions)
+        //  Called change_color
+        //  The instructions start with { and end with }
+
+
+        // You are building functions here, not CALLING. Add the actions to your codes <button>. (((tips: onclick="change_color()"
+        function change_color() {
+            // Notes from Airrick:
+            //  let user_color: create a box (variable)
+            //  assign the right hand side to the left hand side. In our case, put right hand side in the 'box'
+            //  document.querySelector('#color'): select the element with the id of color.
+            //  .value return the elements value ()
+
+            // Step 1 for your brain: Use console log to test where values come from when users input color names.
+            let user_color = document.querySelector('#color').value;
+            console.log(user_color);
+
+            // Notes from Airrick:
+            //  Select the result element
+            //  .style.color change the color property
+            //  = user_color: select 
+             
+            // Step 2: Now you found the 'location' of where users input the colors, apply effects on it.
+            document.querySelector('#result').style.color = user_color;
+        }
+
+        // Notes from Airrick:
+        //  Create a variable named color_btn
+        //  store the apply btn in the variable
+        let color_btn = document.querySelector('#color-btn');
+
+        // Notes from Airrick:
+        //  Using our variable, add a event listener (code that runs when something happens) so that the change_color function runs when the button is clicked
+        color_btn.addEventListener('click', change_color);
+    </script>
+</body>
+</html>

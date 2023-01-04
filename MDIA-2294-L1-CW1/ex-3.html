@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MDIA 2294: WK1_EX3</title>
+</head>
+<body>
+    
+    <h1> MDIA 2294: WK1_EX3 </h1>
+    <p> Current Time: <span id="current_time"></span></p>
+
+    <div>
+        <button onclick="document.querySelector('#current_time').innerHTML = Date();"> Inline JavaScript </button>
+        <button onclick="update_time()"> Function Call </button>
+    </div>
+
+    <script>
+        // function: set of code instructions
+        //          only runs when 'called'
+        // update_time(): name of the function
+        // { ... }: code block that contains the
+        //          statements that are run when the function is called.
+        //
+        // update_time(): this line would call the function
+        function update_time() {
+            document.querySelector('#current_time').innerHTML = Date();
+        }
+
+        console.log('Two statements ran');
+    </script>
+
+</body>
+</html>
