@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>MDIA 2294: WK2_EX1</title>
+	
+</head>
+<body>
+
+	<h1>MDIA 2294: WK2_EX1</h1>
+	
+	<div>
+	    <button id="global">Global</button>
+        <button id="local">Local</button>
+        <button id="constant">Constant</button>
+	</div>
+	<div>Result: <span id="result"></span></div>	
+    
+	<script>
+		const global_btn = document.querySelector("#global");
+		const local_btn = document.querySelector("#local");
+		const const_btn = document.querySelector("#constant");
+	    
+		let count = 0;  
+		const CONST_COUNT = 10;
+        
+	    function test_global() {
+	        // this serves to show that the global variable increments 
+	        // the variable is kept for the duration of the page
+	        count++;
+	        document.querySelector("#result").innerHTML = count;
+	    }
+
+		function test_local() {
+			let count = 100;
+			count++;
+
+			document.querySelector("#result").innerHTML = count;
+
+		}
+
+		function test_constant() {
+			// CONST_COUNT++;
+			document.querySelector("#result").innerHTML = CONST_COUNT;
+		}
+
+		global_btn.addEventListener("click", test_global);
+		local_btn.addEventListener("click", test_local);
+		const_btn.addEventListener("click", test_constant);
+	    
+	</script>
+
+</body>
+</html>
+

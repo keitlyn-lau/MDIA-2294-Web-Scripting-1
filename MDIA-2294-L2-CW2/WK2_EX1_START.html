@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>MDIA 2294: WK2_EX1</title>
+
+</head>
+<body>
+
+	<h1>MDIA 2294: WK2_EX1</h1>
+	
+	<div>
+	    <button id="global">Global</button>
+        <button id="local">Local</button>
+        <button id="constant">Constant</button>
+	</div>
+	<div>Result: <span id="result"></span></div>	
+    
+	<script>
+
+		const global_btn = document.querySelector("#global");
+		const local_btn = document.querySelector("#local");
+		const const_btn = document.querySelector("#constant");
+
+	    let count = 0;
+		const CONST_COUNT = 33;  
+        
+	    function test_global() {
+	        // this serves to show that the global variable increments 
+	        // the variable is kept for the duration of the page
+	        count++;
+	        document.querySelector("#result").innerHTML = count;
+	    }
+
+		function test_local() {
+
+			// Creates a local scope count variable
+			let count = 100;
+
+			// Increase the count variable by 1
+			count++;
+
+			// Display the results on screen
+			document.querySelector("#result").innerHTML = count;
+		}
+		// 0763: Notice that in this function, your scope is inside the function. Everytime you click the Local button on the website, the 'let count = 100' will be called. That's why you got 101 everytime you click the Local button.
+
+		function test_constant() {
+			// CONST_COUNT++;
+			document.querySelector("#result").innerHTML = CONST_COUNT;
+		}
+
+		// Run a function when the global_button is clicked
+		global_btn.addEventListener("click", test_global);
+		local_btn.addEventListener("click", test_local);
+		const_btn.addEventListener("click", test_constant);
+	    
+	</script>
+
+</body>
+</html>
+

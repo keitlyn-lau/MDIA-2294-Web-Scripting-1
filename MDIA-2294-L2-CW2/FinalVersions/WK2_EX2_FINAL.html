@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>MDIA 2294: WK2_EX2</title>
+	
+</head>
+<body>
+
+	<h1>MDIA 2294: WK2_EX2</h1>
+	
+	<div>
+	    <button id="bool-int">Bool to Int</button>
+	    <button id="int-str">Int to String</button>	
+	    <button id="bool-str">Bool to String</button>	  
+		<button id="null">Null</button>	        
+	</div>
+	<div>Result: <span id="result"></span></div>	
+
+	<script>
+
+		const bool_int = document.querySelector("#bool-int");
+		const int_str = document.querySelector("#int-str");
+		const bool_str = document.querySelector("#bool-str");
+		const null_casts = document.querySelector("#null");
+
+	    var bool = true;
+	    var int = 13;
+	    var string = "Test";
+		var null_value = null;
+	
+	    function test_a()
+	    {
+	        // should result in 14 because a boolean cast to a number 
+	        // is either 1 (true) or 0 (false)
+	        document.querySelector("#result").innerHTML = bool + int;
+	    }
+	    
+	    function test_b()
+	    {
+	        // should result in "13Test" because a num cast to a string 
+	        // is the converted into characters and concatenated
+	        document.querySelector("#result").innerHTML = int + string;
+	    }
+	    
+	    function test_c()
+	    {
+	        // should result in "trueTest" because true is cast into "true"	        
+	        document.querySelector("#result").innerHTML = bool + string;
+	    }
+
+		function test_d() {
+			// checking null casts in the console
+			console.log("boolean to null > ");
+			console.log(bool + null_value);
+			console.log("int to null");
+			console.log(int + null_value);
+			console.log("string to null");
+			console.log(string + null_value);
+			console.log("pre-increment");
+			console.log(++null_value);
+		}
+		
+		bool_int.addEventListener("click", test_a);
+		int_str.addEventListener("click", test_b);
+		bool_str.addEventListener("click", test_c);
+		null_casts.addEventListener("click", test_d);
+
+	</script>
+
+</body>
+</html>
