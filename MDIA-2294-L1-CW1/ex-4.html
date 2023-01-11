@@ -24,9 +24,9 @@
         function change_color() {
             // Notes from Airrick:
             //  let user_color: create a box (variable)
-            //  assign the right hand side to the left hand side. In our case, put right hand side in the 'box'
+            //  = assign the right hand side to the left hand side. In our case, put right hand side in the 'box'
             //  document.querySelector('#color'): select the element with the id of color.
-            //  .value return the elements value ()
+            //  .value return the elements value (content of input)
 
             // Step 1 for your brain: Use console log to test where values come from when users input color names.
             let user_color = document.querySelector('#color').value;
@@ -35,7 +35,7 @@
             // Notes from Airrick:
             //  Select the result element
             //  .style.color change the color property
-            //  = user_color: select 
+            //  = user_color: select the box (variables) and look inside and apply that value to the color property
              
             // Step 2: Now you found the 'location' of where users input the colors, apply effects on it.
             document.querySelector('#result').style.color = user_color;
