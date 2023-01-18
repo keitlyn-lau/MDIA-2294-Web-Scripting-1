@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>MDIA 2294: WK3_EX2</title>
+	
+</head>
+<body>
+
+	<h1>MDIA 2294: WK3_EX2</h1>
+	
+	<p>Enter a sales price and select a department to see commissions and discounts.</p>
+	
+	<table>
+	    <tr>
+	        <td>Sale Price:</td>
+	        <td><input id="price" type="text" /></td>
+	        
+	    </tr>
+	    <tr>
+	        <td>Branch:</td>
+	        <td>
+	            <select id="branch">
+                    <option value="">Select One</option>
+                    <option value="A010">Surrey</option>
+                    <option value="B099">North Vancouver</option>
+                    <option value="C330">Burnaby</option>
+                    <option value="D412">Kelowna</option>
+                    <option value="">All other departments</option>
+                </select>   
+	        </td>
+	        <td><span id="warning"></span></td>
+	    </tr>
+	    <tr>
+	        <td>Commission:</td>
+	        <td><span id="commission" /></td>
+	        
+	    </tr>
+	    <tr>
+	        <td>Discount:</td>
+	        <td><span id="discount" /></td>
+	    </tr>
+	    <tr>
+	        <td></td>
+	        <td>
+	            <button id="calculate">Calculate</button>
+	        </td>	        
+	    </tr>
+	</table>
+
+	<script>
+
+		const calculate_btn = document.querySelector('#calculate');
+
+		function calc_rate() {
+			// These variables will be used to store values depending on the users selection
+			let commission;
+			let discount;
+
+			// Selected index always starts counting from 0
+			if(document.querySelector("#branch").selectedIndex == 0) {
+				// If the first item is selected (index 0 - Select One), show a warning dot.
+				document.querySelector("#warning").innerHTML = "&bull;";
+				document.querySelector("#warning").style.color = "rgb(255,0,0)";
+
+			} else {
+				// Otherwise display the discount/commission and remove any error.
+				document.querySelector("#warning").innerHTML = "";
+
+				let branch_code = document.querySelector("#branch").value;
+				let price = document.querySelector("#price").value;
+
+				switch(branch_code) {
+					case "A010":
+						commission = .2;
+						discount = .1;
+						// break exits the switch statement
+						break; 
+					case "B099":
+						commission = .1;
+						discount = .05;
+						break;
+					case "C330": 
+						// C330 will fallthrough to D412
+					case "D412": 
+						commission = .05;
+						discount = .025;
+						break;
+					default: 
+						// All other values will use the following values
+						commission = 0;
+						discount = .025;
+						break;
+				}
+
+				document.querySelector("#commission").innerHTML = "$" + (price * commission).toFixed(2);
+				document.querySelector("#discount").innerHTML = "$" + (price * discount).toFixed(2);
+
+			}
+		}
+
+
+
+		calculate_btn.addEventListener("click", calc_rate);
+
+	</script>
+</body>
+</html>

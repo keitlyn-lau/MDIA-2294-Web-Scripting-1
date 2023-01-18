@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>MDIA 2294: WK3_EX2</title>
+	
+</head>
+<body>
+
+	<h1>MDIA 2294: WK3_EX2</h1>
+	
+	<p>Enter a sales price and select a department to see commissions and discounts.</p>
+	
+	<table>
+	    <tr>
+	        <td>Sale Price:</td>
+	        <td><input id="price" type="text" /></td>
+	        
+	    </tr>
+	    <tr>
+	        <td>Branch:</td>
+	        <td>
+	            <select id="branch">
+                    <option value="">Select One</option>
+                    <option value="A010">Surrey</option>
+                    <option value="B099">North Vancouver</option>
+                    <option value="C330">Burnaby</option>
+                    <option value="D412">Kelowna</option>
+                    <option value="">All other departments</option>
+                </select>   
+	        </td>
+	        <td><span id="warning"></span></td>
+	    </tr>
+	    <tr>
+	        <td>Commission:</td>
+	        <td><span id="commission" /></td>
+	        
+	    </tr>
+	    <tr>
+	        <td>Discount:</td>
+	        <td><span id="discount" /></td>
+	    </tr>
+	    <tr>
+	        <td></td>
+	        <td>
+	            <button id="calculate">Calculate</button>
+	        </td>	        
+	    </tr>
+	</table>
+
+	<script>
+
+		const calculate_btn = document.querySelector("#calculate");
+
+		function calc_rate() {
+			console.log("calc_rate ran");
+
+			let selected_branch = document.querySelector("#branch").selectedIndex;
+			console.log(selected_branch);
+
+			// Don't calculate = show error
+			if (selected_branch === 0) {
+				console.log("selected branch is 0");
+				document.querySelector("#warning").innerHTML = "&bull;" + " Please select your branch.";
+				document.querySelector("#warning").style.color = "red";
+				document.querySelector("#commission").innerHTML = "";
+				document.querySelector("#discount").innerHTML = "";
+			// Calculate = remove error
+			} else {
+				console.log("selected branch is positive");
+				document.querySelector("#warning").innerHTML = "";
+				document.querySelector("#warning").style.color = "black";
+
+				let branch_code = document.querySelector("#branch").value;
+				let commission;
+				let discount;
+
+				console.log(branch_code);
+
+				// 0763: inside the () is expression for switch statement
+				switch (branch_code) {
+					case "A010":
+						commission = .2;
+						discount = .1;
+						break;
+					case "B099":
+						commission = .1;
+						discount = .05;
+						break;
+					// 0763: when cases have same ???, fall them through by not adding break;
+					case "C330":
+					case "D412":
+						commission = .05;
+						discount = .025;
+						break;
+					default:
+						commission = 0;
+						discount = .025;
+						break;
+				}
+				console.log(commission);
+				console.log(discount);
+
+				let price = document.querySelector("#price").value;
+				console.log(price);
+
+				document.querySelector("#commission").innerHTML = "$" + (price * commission).toFixed(2);
+
+				document.querySelector("#discount").innerHTML = "$" + (price * discount).toFixed(2);
+
+			}
+
+		}
+
+		calculate_btn.addEventListener("click", calc_rate);
+
+	</script>
+</body>
+</html>
