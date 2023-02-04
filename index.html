@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>MDIA 2294</title>
+	
+	<style>
+	    thead{
+	        font-weight:bold;
+	    }
+	    
+	    td{
+	        padding-left:5px;
+	        padding-right:5px;	        
+	    }
+	    
+	    td.sub-total{
+	        text-align:right;	        
+	    }
+	</style>
+</head>
+<body>
+	<h1>MDIA 2294: ACME Corp Invoice</h1>
+	
+	<table>
+	    <thead>
+	        <tr>
+	            <td>ITEM</td>
+	            <td>DESCRIPTION</td>
+	            <td>QTY</td>
+	            <td>PRICE</td>
+	            <td>LINE TOTAL</td>
+	        </tr>
+	    </thead>
+	    <tbody>
+	        <tr>
+	            <td>1</td>
+	            <td><input id="line-1-description" type="text" size="40" value="Anvil" /></td>
+	            <td><input id="line-1-quantity" type="text" size="3" value="5" /></td>
+	            <td><input id="line-1-price" type="text" size="6" value="35.00" /></td>
+	            <td class="sub-total"><span id="line-1"></span></td>
+	        </tr>
+	        <tr>
+	            <td>2</td>
+	            <td><input id="line-2-description" type="text" size="40" value="Rocket Skates (each)" /></td>
+	            <td><input id="line-2-quantity" type="text" size="3" value="2" /></td>
+	            <td><input id="line-2-price" type="text" size="6" value="24.99" /></td>
+	            <td class="sub-total"><span id="line-2"></span></td>
+	        </tr>
+	        <tr>
+	            <td>3</td>
+	            <td><input id="line-3-description" type="text" size="40" value="Giant Magnet" /></td>
+	            <td><input id="line-3-quantity" type="text" size="3" value="1" /></td>
+	            <td><input id="line-3-price" type="text" size="6" value="125.50" /></td>
+	            <td class="sub-total"><span id="line-3"></span></td>
+	        </tr>
+	        <tr>
+	            <td>4</td>
+	            <td><input id="line-4-description" type="text" size="40" value="Ball bearings" /></td>
+	            <td><input id="line-4-quantity" type="text" size="3" value="1000" /></td>
+	            <td><input id="line-4-price" type="text" size="6" value="0.25" /></td>
+	            <td class="sub-total"><span id="line-4"></span></td>
+	        </tr>
+	        <tr>
+	            <td>5</td>
+	            <td><input id="line-5-description" type="text" size="40" value="Portable holes" /></td>
+	            <td><input id="line-5-quantity" type="text" size="3" value="12" /></td>
+	            <td><input id="line-5-price" type="text" size="6" value="15.25" /></td>
+	            <td class="sub-total"><span id="line-5"></span></td>
+	        </tr>
+	    </tbody>
+	    <tfoot>
+	        <tr>
+	            <td colspan="4" style="text-align:right;">SUB TOTAL</td>  
+	            <td class="sub-total"><span id="sub-total"></span></td>	        
+	        </tr>
+	        <tr>
+	            <td colspan="4" style="text-align:right;">DISCOUNT</td>  
+	            <td class="sub-total"><span id="discount"></span></td>	        
+	        </tr>
+	        <tr>
+	            <td colspan="4" style="text-align:right;">TAX</td>  
+	            <td class="sub-total"><span id="tax"></span></td>	        
+	        </tr>
+	        <tr>
+	            <td colspan="4" style="text-align:right;">TOTAL</td>  
+	            <td class="sub-total" style="border-top:solid black 1px"><span id="Total"></span></td>	        
+	        </tr>
+	    </tfoot>	    
+	</table>
+	
+	<div><button id="calculate">Calculate</button></div>
+	<div>NOTE: discounts of 10% are given to orders over $250</div>
+
+	<script>
+		// Name: Wan Sze Kei Lau (Keitlyn)
+		// Student no.: A01207144
+		// MDIA 2294: Assignment 1
+
+		// Below the 3 variables are used with 'const' because I don't want the value to be changed.
+		// Variables names 'calculate_btn', 'discount_rate', 'tax_rate' are used to give a clear understand for other co-coders.
+		// To grab the 'location' of the calculate button, document.querySelector("#calculate") is used
+		// 	where document = webpages of any browsers and querySelector("") = select the element on the pages.
+		//	In this case, #calculate is put in there because the calculate button has a id named "calculate"
+		// For discount_rate and rax_rate, they are just numbers so keep it as a number data type
+		const calculate_btn = document.querySelector("#calculate");   // Creat a variable to store 'Calculate' button 
+		const discount_rate = 0.1;   // Create a variable to store the value of discount rate
+		const tax_rate = 0.12;   // Create a variable to store the value of tax_rate
+
+		// Create a function to calculate sub-totals and total amount of the invoice
+		//	Starting a function by keyword 'function'
+		//	Following function nameOfFunction() is representing the name of function and parameters in the brackets
+		//	If there is no any parameters yet, leave it blank
+		//	Following by braces, it will be all the codes that need to be run when the function is called later on
+	    function calculate() {
+
+			// Here 'let' is used because the value of sub_total will be changed later
+			let sub_total = 0;   // Create a variable to store the value of sub total
+
+			// Below is grabing values input from the webpages by users and multiplying the two values to get a sub-total value
+			// Here 'const' is used because we don't need line_1 to be changed later
+			const line_1 = document.querySelector("#line-1-price").value * document.querySelector("#line-1-quantity").value;
+			// Now we display the sub-total value on the webpage
+			// document = webpages from any browsers
+			// querySelector("#line-1") = select the location with an id named line-1
+			// innerHTML = area between an element's opening tag and closing tag
+			// tell the browser now we want to show sub-total of line 1 on webpages
+			// .toFixed() = set decimal places for numbers. In this case, we want 2 decimal places, so we put .toFixed(2) there
+			document.querySelector("#line-1").innerHTML = "$" + line_1.toFixed(2);
+			// Add line 1 total to the sub-total as well
+			// += means concatenating the right value to the left value
+			sub_total+=line_1;
+
+			// Same idea
+			const line_2 = document.querySelector("#line-2-price").value * document.querySelector("#line-2-quantity").value;
+			document.querySelector("#line-2").innerHTML = "$" + line_2.toFixed(2);
+			sub_total+=line_2;
+
+			// Same idea
+			const line_3 = document.querySelector("#line-3-price").value * document.querySelector("#line-3-quantity").value;
+			document.querySelector("#line-3").innerHTML = "$" + line_3.toFixed(2);
+			sub_total+=line_3;
+
+			// Same idea
+			const line_4 = document.querySelector("#line-4-price").value * document.querySelector("#line-4-quantity").value;
+			document.querySelector("#line-4").innerHTML = "$" + line_4.toFixed(2);
+			sub_total+=line_4;
+
+			// Same idea
+			const line_5 = document.querySelector("#line-5-price").value * document.querySelector("#line-5-quantity").value;
+			document.querySelector("#line-5").innerHTML = "$" + line_5.toFixed(2);
+			sub_total+=line_5;
+
+			// Show the sub total numbers with 2 decimal places to screen 
+			document.querySelector("#sub-total").innerHTML = "$" + sub_total.toFixed(2);
+
+			// Use ternary statement to verify if users get discounts or not
+			// Here 'const' is used because we don't need dis_ver to be changed later
+			// First, we create a variable named dis_ver to store the conditions
+			// nameOfVariable = ( statement of the condition ) ? trueResults : falseResults ;
+			// * If sub total is more than $250, users get the discount_rate
+			const dis_ver = (sub_total >= 250) ? true : false;
+
+			// dis_amount may be changed later depending on the ternary statement results, so we use 'let' here
+			// we don't want to store any value for dis_amount yet, so we don't put equal symbol and value for now
+			let dis_amount;   // Create a variable to store the discount amount
+
+			// Use if statement to calculate the discount amount and store it to the dis_amount variable
+			// if statement is used as below
+			// if ( condition is yes for the case ) { doSomething; } else { doSomething; }
+			if (dis_ver) {
+				dis_amount = (sub_total * discount_rate).toFixed(2) ;
+			} else {
+				dis_amount = 0 ;
+			}
+
+			// Show the discount amount on screen
+			document.querySelector("#discount").innerHTML = "$" + dis_amount;
+
+			// Using const for the following variables because we don't need them to be changed later
+			const new_sub_total = sub_total - dis_amount;   // Create a variable to store a new sub total after applying discount
+			const tax_amount = tax_rate * new_sub_total;   // Create a variable to store the calculated tax amount
+			const final_total = new_sub_total + tax_amount;   // Create a variable to store the final total amount
+
+			// Show the tax amount on screen
+			document.querySelector("#tax").innerHTML = "$" + tax_amount.toFixed(2);
+
+			// Show the final total amount on screen
+			document.querySelector("#Total").innerHTML = "$" + final_total.toFixed(2);
+
+	    }
+	
+		// Call the function when user click the 'Calculate' button
+		// calculate_btn = the element we want to access where we store it earlier in a variable named calculate_btn
+		// addEventListener = tell the browser that we want something happen in specific situation
+		// And the situation would be ('click', calculate) which means
+		// when users click button calculate_btn, run the function called calculate
+		calculate_btn.addEventListener('click', calculate);
+
+    </script>
+</body>
+</html>
