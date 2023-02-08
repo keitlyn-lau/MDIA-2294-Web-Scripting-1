@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>MDIA 2294: WK6_EX1</title>
+</head>
+<body>
+	<h1>MDIA 2294: WK6_EX1</h1>
+
+	<p>Start Value: <input id="start" type="text" type="number" /></p>
+	<p>End Value: <input id="end" type="text" type="number" /></p>
+	
+    <p>
+        <button id="while">Show While Loop</button>
+        <button id="do">Show Do Loop</button>	    
+        <button id="for">Show For Loop</button>
+    </p>
+		
+	<div id="result"></div>
+
+
+	<script>
+		const while_btn = document.querySelector("#while");
+		const do_btn = document.querySelector("#do");
+		const for_btn = document.querySelector("#for");
+
+
+	    function while_example() {
+	        // the while loop checks the criteria at the begining
+	        let current_num = parseInt(document.querySelector("#start").value);
+	        let ending_num = parseInt(document.querySelector("#end").value);
+	        let output_html = "<div>While Loop</div>";
+
+	        // While Example here
+			while (current_num < ending_num) {
+					if (current_num == 13) {
+						output_html += "<div> Break at 13 </div>";
+						break;
+					}
+				output_html += "<div> Current: " + current_num + "</div>";
+				current_num++;
+			}
+
+	        document.querySelector("#result").innerHTML = output_html;
+	    }
+
+
+	    function do_example() {
+	        // the while loop checks the criteria at the begining
+	        let current_num = parseInt(document.querySelector("#start").value);
+	        let ending_num = parseInt(document.querySelector("#end").value);
+	        let output_html = "<div>Do While Loop</div>";
+
+	        // Do ... While Example here
+			do {
+					if (current_num == 3) {
+						output_html += "<div> Continue at 3 </div>";
+						current_num++;
+						continue;
+					}
+				output_html += "<div> Current: " + current_num + "</div>";
+				current_num++;
+			} while (current_num < ending_num);
+
+	        document.querySelector("#result").innerHTML = output_html;
+	    } // end of showDoLoop
+        	
+
+        function for_example() {
+            // the while loop checks the criteria at the begining
+            let ending_num = parseInt(document.querySelector("#end").value);
+            var output_html = "<div>For Loop (ignores start value)</div>";
+            
+			// For Example here
+            for ( let i = 0; i < ending_num; i++ ) {
+				output_html += "<div> Current = " + i + "</div>";
+			}
+			
+            document.querySelector("#result").innerHTML = output_html;    
+        }
+
+
+		while_btn.addEventListener("click", while_example);
+		do_btn.addEventListener("click", do_example);
+		for_btn.addEventListener("click", for_example);
+	</script>	
+
+</body>
+</html>

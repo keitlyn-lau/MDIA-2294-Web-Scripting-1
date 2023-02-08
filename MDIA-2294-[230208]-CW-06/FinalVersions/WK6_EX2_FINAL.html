@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>MDIA 2294: WK6_EX2</title>
+	
+</head>
+<body>
+
+	<h1>MDIA 2294: WK6_EX2</h1>
+	
+	<p>
+	    <button id="loop-btn">Loop through Array</button>
+	</p>	
+	
+	<div id="result"></div>
+
+	<script>
+
+		const loop_btn = document.querySelector("#loop-btn");
+
+		const loop_array = () => {
+			
+			let colors = [
+				"#FF0000",
+				"#FFFF00",
+				"#00FF00",
+				"#00FFFF",
+				"#FF00FF"
+			];
+
+			let output_html = "<div>Set of Colors</div>";
+
+			colors.forEach((color) => {
+				output_html +=  "<div style='color:" + color + "'>Code = " + color + "</div>";
+			});
+
+			document.querySelector("#result").innerHTML = output_html;
+
+		}
+
+		loop_btn.addEventListener("click", loop_array);
+
+	</script>
+
+</body>
+</html>

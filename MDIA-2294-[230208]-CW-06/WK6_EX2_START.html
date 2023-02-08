@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>MDIA 2294: WK6_EX2</title>
+	
+</head>
+<body>
+	<h1>MDIA 2294: WK6_EX2</h1>
+	<p>   <button id="loop-btn">Loop through Array</button>   </p>	
+	<div id="result"></div>
+
+
+	<script>
+		// Select the button on screen
+		const btn = document.querySelector("#loop-btn");
+
+		// Create an array of colors
+		const colors = [
+			"#FF0000",
+			"#00FF00",
+			"#0000FF",
+			"#00FFFF",
+			"#FF00FF",
+			"#FFFF00"
+		];
+
+		// Create a arrow function
+		const loop_array = () => {
+			// Select the result div
+			const result = document.querySelector("#result");
+			
+			// Create a new title h2
+			const title = document.createElement("h2");
+
+			// Change the text of the h2
+			title.textContent = "Set of Colors";
+			
+			// Add the h2 to the #result as a child (put it inside)
+			result.append(title);
+
+			// colors - this is the array above
+			// .forEach - this is a loop that arrays have that loop through each item
+			// . forEach(  () => {  }  )  - the argument that goes inside the foreach is a arrow function
+			// (color) => {}  - the color argument in this function will hold the current color on each loop
+			// { console.log(color)} - shows the currently looped through color on screen
+			colors.forEach( (color) => { 
+				// Create a div with js
+				const color_div = document.createElement("div");
+
+				// Change the div's css color above to the currently looped color
+				color_div.style.color = color;
+
+				// Add the name fo the color to the content of the div created above
+				color_div.textContent = "Code = " + color;
+
+				// Add the div as a child to the #result div in the html
+				result.append(color_div);
+			 });
+		}
+
+		// Run loop_array when btn is clicked
+		btn.addEventListener("click", loop_array);
+	</script>
+</body>
+</html>

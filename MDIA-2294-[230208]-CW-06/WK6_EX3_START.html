@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>MDIA 2294: WK6_EX3</title>
+	
+	<style>	
+	    img.clickable {
+	    	margin:5px;
+	        cursor:pointer;
+	    }
+	</style>
+    
+</head>
+<body>
+	<h1>MDIA 2294: WK6_EX3</h1>
+	
+	<div style="text-align:center;">
+	    <div> <img id="main-image" /> </div>	
+	    <div id="thumbnails"> </div>	
+	</div>
+	
+	<script>
+		// Create a new array
+		const image_names = [
+			"alpha",
+			"beta",
+			"gamma",
+			"delta",
+			"epsilon"
+		];
+
+
+		// Create a new arrow function named set_slides
+		// 1 parameter = the index of the image to chnage the main slide to
+		const set_slides = (image_index) => {
+
+			// Reach into the screen and change the element with the id of main-image to have src of the image path
+			// Example:
+			// if image_index = 2
+			// "images" + "image_names[2] + "Full.png"
+			// "images/gammaFull.png"
+			document.querySelector("#main-image").src = "images/" + image_names[image_index] + "Full.png";
+		};
+
+
+		// Create a new function called set_thumbnails
+		// No params here
+		const set_thumbnails = () => {
+
+			// Loop through the array created above
+			// First param is the new variable to store the item we are currently looping through
+			// Second param is the index of the item
+			// Example first loop index is 0, and img_root is "alpha"
+			image_names.forEach( (img_root, i) => {
+
+				// Creates a new <img> in JS
+				const new_thumb = document.createElement("img");
+
+				// Adds a src attribute to the <img> created above
+				// <img src="images/alphaThumb.png" />
+				new_thumb.src = "images/" + img_root + "Thumb.png";
+
+				// Adds a classname to the img created above
+				// <img class="clickable" src="images/alphaThumb.png" />
+				new_thumb.className = "clickable";
+
+				// Adds an event listen to the <img> above
+				// runs set_slides where i is the current index
+				// See above for more on i
+				new_thumb.addEventListener("click", () => {
+					set_slides(i);
+				});
+
+				// Add the <img> as a child to the selected #thumbnails div. It will now show it on screen
+				document.querySelector("#thumbnails").append(new_thumb);
+			} );
+		};
+
+
+		// Wait for the window to load, then fire the annoymous arrow function {  () => {...} }
+		window.addEventListener("load", () => {
+			set_slides(0);
+			set_thumbnails(0);
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>MDIA 2294: WK6_EX3</title>
+	
+	<style>	
+	    img.clickable{
+	    	margin:5px;
+	        cursor:pointer;
+	    }
+	
+	</style>
+    
+</head>
+<body>
+
+	<h1>MDIA 2294: WK6_EX3</h1>
+	
+	<div style="text-align:center;">
+	    <div><img id="main-image" /></div>	
+	    <div id="thumbnails"></div>	
+	</div>
+	<script>
+
+	// Store the names of base names of image in an array
+	const image_names = ["alpha", "beta", "gamma", "delta", "epsilon"];
+
+	// Create a function to add the main image to the screen
+	const set_slides = (image_index) => {
+
+		// set the main image can using the src property
+		document.querySelector("#main-image").src = "images/" + image_names[image_index] + "Full.png";   
+
+	} // end of set_slides
+
+	// Create a function to set the thumbnails
+	const set_thumbnails = () => {
+
+		// Loop through the names above, calling an anonymous arrow function on each iteration 
+		image_names.forEach( (name, index) => {
+
+			// Create a new DOM element
+			let new_thumb = document.createElement('img');
+
+			// Change the src for the new image
+			new_thumb.src = 'images/' + name + 'Thumb.png';
+
+			// Add a new class to the new image
+			new_thumb.className = 'clickable';
+
+			// Add a new event listener
+			new_thumb.addEventListener('click', () => {
+				set_slides(index);
+			});
+
+			// Add the new element as child of the thumbnails div
+			document.querySelector('#thumbnails').appendChild(new_thumb);
+
+		});
+
+	}
+
+	// Add a even listener to the window
+	// When the window has loaded, call the functions aboveß
+	window.addEventListener("load", () => {
+		set_slides(0);
+		set_thumbnails();
+	});	
+
+	</script>
+</body>
+</html>
