@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>MDIA 2294: WK7_EX1</title>
+</head>
+<body>
+
+	<div id="carousel" style="text-align:center;">
+	    <div>
+    	    <!-- this will be the main carousel image -->
+            <img id="main-image" src="images/carouselFirst.png" />    	    
+	    </div>
+	    
+	    <div>
+            <!-- these are to be navigation buttons -->
+            <!-- they will have one of two images set navCurr.png for the current otherwise navOff.png -->
+            <img class="nav-icon" src="images/navCurr.png" />
+            <img class="nav-icon" src="images/navOff.png" />
+            <img class="nav-icon" src="images/navOff.png" />
+	    </div>
+	    
+        <!-- this span is used to track the current image index -->
+        <!-- it is currently left visible but would be hidden for end users -->
+	    <span><input id="hidden-position" type="number" value="0" /></span>
+	</div>
+
+	<script>
+
+	const nav_icons = document.querySelectorAll(".nav-icon");
+
+	const set_main_image = (index) => {
+        // an array stores all the image filenames for the carousel
+        const image_names = 
+            ["carouselFirst.png", "carouselSecond.png", "carouselThird.png"];
+        
+        // set the main carousel image to a specific index passed
+        document.querySelector("#main-image").src = 
+            "images/" + image_names[index];
+
+        // set this textbox to current position (later will be hidden)
+        document.querySelector("#hidden-position").value = index;
+
+		set_nav_buttons(index)
+
+    } // end of set_main_image
+
+	const set_nav_buttons = (index) => {
+		
+		nav_icons.forEach( (icon, loop_index) => {
+			icon.src = (loop_index == index) ? "images/navCurr.png" : "images/navOff.png";
+		});		
+
+	} // end of set_nav_buttons
+
+
+	nav_icons.forEach( (icon, index) => {
+		icon.addEventListener("mouseover", () => {
+			set_main_image(index);
+		});
+	});
+
+
+
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>MDIA 2294: WK7_EX1</title>
+</head>
+<body>
+
+	<div id="carousel" style="text-align:center;">
+	    <div>
+    	    <!-- this will be the main carousel image -->
+            <img id="main-image" src="images/carouselFirst.png" />    	    
+	    </div>
+	    
+	    <div>
+            <!-- these are to be navigation buttons -->
+            <!-- they will have one of two images set navCurr.png for the current otherwise navOff.png -->
+            <img class="nav-icon" src="images/navCurr.png" />
+            <img class="nav-icon" src="images/navOff.png" />
+            <img class="nav-icon" src="images/navOff.png" />
+			<!-- <button onclick="set_next_image()"> Next_example0 </button> -->
+			<img src="images/btnPause.png" alt="" id="play-pause" data-playing="1">
+	    </div>
+	    
+        <!-- this span is used to track the current image index -->
+        <!-- it is currently left visible but would be hidden for end users -->
+	    <span><input id="hidden-position" type="number" value="0" /></span>
+	</div>
+
+	<script>
+
+		const image_names = [ "carouselFirst.png", "carouselSecond.png", "carouselThird.png" ];
+		const nav_icons = document.querySelectorAll(".nav-icon");
+		const play_btn = document.querySelector("#play-pause");
+
+		let carousellInterval;   // Create a new variable to save the interval
+
+		// Create a function to start the interval
+		const start_rotation = () => {
+			carouselInterval = window.setInterval(set_next_image, 2500);   // Runs set_next_image every 2500 milliseconds
+		}
+
+		// Loop through the nav_icons stored above
+		// Each iteration icon is one of the dots in order
+		// index is the ucrrent index of the loop
+		nav_icons.forEach( (icon, index) => {
+				// On each iteration, attach a eventlistener to the icon
+				icon.addEventListener("mouseover", () => {
+					// Set the main image with the index that matches the icon
+					set_main_image(index);
+						// 0763: for you to understand the concept
+						// everytime you hover on the circle
+						// which elements actually working when you hover
+						console.log(index);
+						console.log(icon);
+				});
+		});
+
+		const set_main_image = (image_index) => {
+			// Set the src attribute of the main image above
+			document.querySelector("#main-image").src = "images/" + image_names[image_index] ;
+			// Set the input to the new index
+			document.querySelector("#hidden-position").value = image_index;
+			// Call set_nav_icons function when the main image changes
+			set_nav_icons(image_index);
+		};
+
+		// Create a function to update the nav_icons image
+		const set_nav_icons = (new_index) => {
+			// Loop through our global collection
+			nav_icons.forEach( (icon, index) => {
+				// Ternary operator
+				// if the index (the index of the current icon)
+				// matches the index that gets passed in (from main image array)
+				// that is being set, show the navCurr
+				// If it does not match the index or the desired image
+				// show navoff.png
+				icon.src = (index == new_index) ? "images/navCurr.png" : "images/navOff.png" ;
+			});
+		};
+
+		const set_next_image = () => {
+			// Get the current index from the input, change it to a number
+			const current_index = Number.parseInt(document.querySelector("#hidden-position").value);
+			// Add 1 to the input number above
+			let new_index = (current_index < image_names.length - 1) ? current_index + 1 : 0;
+			// Update the main image with the new index
+			set_main_image(new_index);
+		}
+
+		// Create a new arrow functions
+		const toggle_play_pause = () => {
+			const play_state = play_btn.dataset.playing;   // Store the value of data-playing=""
+				if (play_state == 1) {   // If the slideshow is playing, pause
+					window.clearInterval(carouselInterval);   // Clear the interval saved above
+					play_btn.src = "images/btnPlay.png";   // Update the icon
+					play_btn.setAttribute("data-playing", 0);   // Update the data attribute data-playing to be 0
+						console.log("Before you clicked, the data-playing was: " + play_state);
+				} else {   // If the slideshow is paused, play
+					start_rotation();   // Start the interval
+					play_btn.src = "images/btnPause.png";   // Change the icon
+					play_btn.setAttribute("data-playing", 1);   // Update the data attribute to 1
+						console.log("It runs again. The data-playing was " + play_state);
+				};
+		};
+
+		play_btn.addEventListener("click", toggle_play_pause);
+
+		// Add a callback to the window (browser) fires the load event
+		// The load event fires when the whole page has finished loading
+		// ... Coulda guessed that one
+		window.addEventListener("load", () => {
+			start_rotation();
+			set_main_image(0);
+		});
+
+	</script>
+
+</body>
+</html>
