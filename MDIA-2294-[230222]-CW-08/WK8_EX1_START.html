@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>MDIA 2294</title>
+	
+</head>
+<body>
+
+	<h1>MDIA 2294: WK8_EX2</h1>
+	
+	<div>Ask your question and then <button id="shake-btn">Answer</button></div>
+	<div>Answer: <span id="answer"></span></div>  
+
+	<script>
+	
+    const btn = document.querySelector("#shake-btn");
+
+	const answers = [  "It is certain",
+                       "It is decidedly so",
+                       "Without a doubt",
+                       "Yes, definitely",
+                       "You may rely on it",
+                       "As I see it, yes",
+                       "Most likely",
+                       "Outlook good",
+                       "Yes",
+                       "Signs point to yes",
+                       "Reply hazy try again",
+                       "Ask again later",
+                       "Better not tell you now",
+                       "Cannot predict now",
+                       "Concentrate and ask again",
+                       "Don't count on it",
+                       "My reply is no",
+                       "My sources say no",
+                       "Outlook not so good",
+                       "Very doubtful"];
+
+
+let progress = 0;
+let timer;
+                       
+const get_answer = () => {
+    const roll = Math.round(Math.random() * 19);
+
+    document.querySelector("#answer").innerHTML = answers[roll];
+}
+	
+const shake = () => {
+    // Run update progress forever every
+    // 25ms
+    timer = setInterval(update_progress, 25);
+}
+
+const update_progress = () => {
+    console.log("hi");
+    // If the global progres variable is
+    // less than or equal to 20, show a new answer and update progress by one.
+    // This function runs every 25ms
+    if (progress <= 20) {
+        get_answer();
+        progress++;
+    } else {
+        clearInterval(timer);
+        progress = 0;
+    }
+}
+
+btn.addEventListener("click", get_answer);
+btn.addEventListener("dblclick", shake);
+
+	</script>
+    
+</body>
+</html>

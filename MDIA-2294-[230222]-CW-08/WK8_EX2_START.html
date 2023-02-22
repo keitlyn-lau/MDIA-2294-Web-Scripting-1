@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>MDIA 2294</title>
+		
+</head>
+<body>
+
+	<h1>MDIA 2294: WK8_EX3</h1>
+	
+	<table>
+	    <tr>
+	        <td><b>First:</b></td>
+	        <td><input id="first-name" type="text" class="required" data-error-id="first-name-error" /><span id="first-name-error"></span></td>
+	    </tr>
+	    <tr>
+	        <td>Middle: </td>
+	        <td><input id="middle-name" type="text" /></td>
+	    </tr>
+	    <tr>
+	        <td><b>Last:</b> </td>
+	        <td><input id="last-name" type="text" class="required" data-error-id="last-name-error" /><span id="last-name-error"></span></td>
+	    </tr>
+	    <tr>
+	        <td><b>Email:</b> </td>
+	        <td><input id="email" type="text" class="required" data-error-id="email-error" /><span id="email-error"></span></td>
+	    </tr>	
+	</table>
+
+    <div><button id="submit">Submit</button></div>
+
+	<script>
+
+		const submit_btn = document.querySelector("#submit");
+
+		const submit_form = () => {
+
+			// Select all input fields with required
+			// They are a group stored in the variable known as a node list
+			const required_fields = document.querySelectorAll(".required");
+
+			// Loop through the node list above
+			// On each iteration pass the current .required field
+			// into a variable called field
+			required_fields.forEach( (field) => {
+
+					// Get the value from the field on each loop through all the elements with the class above
+					const field_value = field.value.trim();
+
+					// On each iteration get the data from the element
+					// If the html was <div data-love-coding="true">
+					// The js would be el.dataset.loveCoding (this would be true)
+					const error_id = field.dataset.errorId;
+
+					// If the field is blank, show a bullet
+					// If it is not blank reset it to blank just in case there is a bullet.
+					if(field_value == "") {
+						document.querySelector("#" + error_id).innerHTML = "&bull;";
+					} else {
+						document.querySelector("#" + error_id).innerHTML = "";
+					}
+
+				}
+			)
+		} // end of submit_form
+
+		submit_btn.addEventListener("click", submit_form);
+
+	</script>
+
+</body>
+</html>

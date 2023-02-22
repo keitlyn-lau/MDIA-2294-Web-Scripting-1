@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>MDIA 2294</title>
+	
+    <script>
+
+    function updateField(caller){
+
+        if(caller.value.trim() == ""){
+            document.getElementById(caller.getAttribute("errSpan")).innerHTML = "&bull;";
+        }
+        else{
+            document.getElementById(caller.getAttribute("errSpan")).innerHTML = "";
+        }	
+    } // end of updateField
+	
+    function submitForm(){
+
+        var colRequiredFields = document.getElementsByClassName("clRequired");
+        var strFirstWrong = "";
+        
+        for(let i = 0; i < colRequiredFields.length; i++){
+            if(colRequiredFields[i].value.trim() == ""){
+                document.getElementById(colRequiredFields[i].getAttribute("errSpan")).innerHTML = "&bull;";
+            }
+            else{
+                document.getElementById(colRequiredFields[i].getAttribute("errSpan")).innerHTML = "";
+            }	    
+        }
+    } // end of submitForm
+	
+	</script>	
+</head>
+<body>
+
+	<h1>MDIA 2294: WK8_EX3</h1>
+	
+	<table>
+	    <tr>
+	        <td><b>First:</b></td>
+	        <td><input id="txtFirst" type="text" class="clRequired" errSpan="spnFirst" onchange="updateField(this);" /><span id="spnFirst"></span></td>
+	    </tr>
+	    <tr>
+	        <td>Middle: </td>
+	        <td><input id="txtMid" type="text" /></td>
+	    </tr>
+	    <tr>
+	        <td><b>Last:</b> </td>
+	        <td><input id="txtLast" type="text" class="clRequired" errSpan="spnLast" onchange="updateField(this);" /><span id="spnLast"></span></td>
+	    </tr>
+	    <tr>
+	        <td><b>Email:</b> </td>
+	        <td><input id="txtEmail" type="text" class="clRequired" errSpan="spnEmail" onchange="updateField(this);" /><span id="spnEmail"></span></td>
+	    </tr>	
+	</table>
+
+    <div><button id="cmdSubmit" onclick="submitForm();">Submit</button></div>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>MDIA 2294</title>
+	
+</head>
+<body>
+
+	<h1>MDIA 2294: WK8_EX4</h1>
+	
+	<div>Example 1: <span id="example-1"></span></div>
+	<div>Example 2: <span id="example-2"></span></div>
+	<div>Example 3: <span id="example-3"></span></div>
+
+    <div><button id="examples-btn">Show Examples</button></div>
+
+	<script>
+
+		const submit_btn = document.querySelector("#examples-btn");
+
+		// %his is a Class
+		// convention is that the name is capitalized
+		class Movie {     
+
+			constructor(t, d, y) {
+				this.title = t;
+				this.director = d;
+				this.year = y;        
+			}
+
+			full_title() {
+				return this.title + " by " + this.director + " (" + this.year + ")"
+			}
+
+		} // end of class Movie
+
+
+		const show_examples = () => {
+
+			const movie_1 = {
+				title: "Everything Everywhere All at Once",
+				director: "Daniel Kwan and Daniel Scheinert",
+				year: 2022
+			};
+
+			document.querySelector("#example-1").innerHTML = display_movie(movie_1);
+
+			// second example literal object
+			// year property was named incorrectly
+			const movie_2 = { 
+				title: "Entergalactic", 
+				director: "Flecther Morris", 
+				year_made: 2022 
+			};
+
+			document.querySelector("#example-2").innerHTML = display_movie(movie_2);
+
+			// third example we call Class constructor
+			const movie_3 = new Movie("Brick", "Rian Johnson", 2005);
+
+			document.querySelector("#example-3").innerHTML = movie_3.full_title();
+
+		}
+
+		const display_movie = movie => {
+
+			return movie.title + " by " + movie.director + " (" + movie.year + ")"
+
+		} // End of display_movie
+
+		submit_btn.addEventListener("click", show_examples);
+
+	</script>	
+
+</body>
+</html>

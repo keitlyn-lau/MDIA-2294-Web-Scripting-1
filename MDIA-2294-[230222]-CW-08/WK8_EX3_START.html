@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>MDIA 2294</title>
+	
+</head>
+<body>
+
+	<h1>MDIA 2294: WK8_EX4</h1>
+	
+	<div>Example 1: <span id="example-1"></span></div>
+	<div>Example 2: <span id="example-2"></span></div>
+	<div>Example 3: <span id="example-3"></span></div>
+
+    <div><button id="examples-btn">Show Examples</button></div>
+
+	<script>
+
+		const submit_btn = document.querySelector("#examples-btn");
+
+		class Movie {
+			constructor(t,d,y) {
+				this.title = t;
+				this.director = d;
+				this.year = y;
+			}
+			full_title() {
+				return this.title + " by " + this.director + " (" + this.year + ")";
+			}
+		}
+
+		const show_examples = () => {
+
+			// Create a new literal object
+			// Assign the proeprties (variables of objects) via key:value pairs
+			const movie_1 = {
+				title: "Everything, Everywhere, All at Once",
+				director: "Daniel Kwan and Daniel Scheinert",
+				year: 2022
+			}
+
+			const movie_2 = {
+				title: "Entergalatic",
+				director: "Flecther Morris",
+				year: 2022
+			}
+
+			const movie_3 = new Movie("Brick", "Rian Johnson", 2005);
+			movie_3.full_title();
+
+			document.querySelector("#example-1").innerHTML = display_movie(movie_1);
+			document.querySelector("#example-2").innerHTML = display_movie(movie_2);
+			document.querySelector("#example-3").innerHTML = movie_3.full_title();
+		}
+
+		// This function takes a object as a parameter
+		const display_movie = (movie) => {
+
+			// Concatenate a sentence using he objects properties
+			return movie.title + " by " + movie.director + " (" + movie.year + ")";
+		}
+
+		submit_btn.addEventListener("click", show_examples);
+
+	</script>	
+
+</body>
+</html>
