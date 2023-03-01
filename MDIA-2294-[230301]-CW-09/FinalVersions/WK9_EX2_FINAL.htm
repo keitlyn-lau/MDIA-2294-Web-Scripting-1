@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>MDIA 2294: WK9_EX2</title>	
+	
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" >
+    </script>
+
+	<script>
+
+		// this makes sure the document loads entirely
+		$(document).ready(function(){
+		
+			// attach an event handler for cmdAlpha
+			$("#test-1-btn").click(function(){
+
+				// just writing a static string to a span
+				$("#test-1-result").html("This is a test");
+
+			});
+
+		// an event listener for test-2-btn 
+		$("#test-2-btn").click(function(){
+
+			// writing the value of test-2-input into the span            
+			$("#test-2-result").html( $("#test-2-input").val() );
+
+		});
+
+		// an event listener for test-2-btn 
+		$("#test-3-btn").click(function(){
+
+			const scaler = $("#test-3-input").val();
+
+			// writing the value of test-2-input into the span            
+			$("#test-3-result").html( get_random(scaler) );
+
+		});		
+
+		const get_random = (end) => {
+			 
+			return Math.round(Math.random() * end);
+
+		}
+		
+	});
+		
+	</script>
+	
+
+</head>
+<body>
+
+	<h1>MDIA 2294: WK9_EX2</h1>
+	
+	<div>
+	    <button id="test-1-btn">Test 1</button>
+	</div>
+	<div>Test 1 Result: <span id="test-1-result"></span></div>
+
+    <hr />
+
+    <div>
+        <input id="test-2-input" type="text" />
+	    <button id="test-2-btn">Test 2</button>
+	</div>
+	<div>Test 2 Result: <span id="test-2-result"></span></div>
+
+    <hr />
+    
+    <div>
+        Number between 0 and <input id="test-3-input" type="number" value="10">
+	    <button id="test-3-btn">Test 3</button>
+	</div>
+	<div>Test 3 Result: <span id="test-3-result"></span></div>
+</body>
+</html>

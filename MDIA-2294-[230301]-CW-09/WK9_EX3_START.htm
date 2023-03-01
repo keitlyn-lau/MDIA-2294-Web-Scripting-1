@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>MDIA 2294: WK9_EX3</title>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>	
+
+    <script>
+
+        // Wait for the page to load
+        $(document).ready( function() {
+            
+            // Selects all inputs
+            // and adds an event listener for change
+            // to all of them (if number).
+            $("input[type='number']").change( function () {
+
+                // When nested in an event listener
+                // $(this) will be the element that fire the event
+                // This will change based on what input was changed
+                    // window.alert( $(this).val() );
+
+                // Create a new variable
+                // In that variable access the currently
+                // changed input's data-result
+                // and return the value to the variable
+                const span_id = $(this).data("result");
+
+                // Create a selector the variable above
+                // Example:
+                    // if data-result="example-1-result"
+                    // Then span id will now have "example-1-result"
+                    // Then glue # + span-1-result to create
+                    // $("#span-1-result")
+                // The $(this) selector is still the currently changed element
+                // .val() will reutrn it's value that will be written in the span
+                $("#" + span_id).html( $(this).val() );
+
+            });
+
+        });
+
+    </script>
+
+</head>
+<body>
+
+	<h1>MDIA 2294: WK9_EX3</h1>
+	
+    <div><input id="test-1" type="number" value="5" data-result="line-1-result"> <span id="line-1-result"></span></div>
+    <div><input id="test-2" type="number" value="10" data-result="line-2-result"> <span id="line-2-result"></span></div>
+    <div><input id="test-3" type="number" value="50" data-result="line-3-result"> <span id="line-3-result"></span></div>
+    <div><input id="test-4" type="text" value="test" data-result="line-4-result"> <span id="line-4-result"></span></div>
+
+</body>
+</html>

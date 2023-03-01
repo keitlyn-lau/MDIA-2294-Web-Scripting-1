@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>MDIA 2294</title>	
+	
+</head>
+<body>
+
+	<h1>MDIA 2294: WK9_EX1</h1>
+	
+	<div>Student 1: <span id="student-1"></span></div>
+	<div>Student 2: <span id="student-2"></span></div>
+
+    <div><button id="show-students">Show Students</button></div>
+
+	<!-- Include an external js file -->
+	<script src="Student.js"></script>
+	<script>
+
+		document.querySelector("#show-students").addEventListener("click", () => {
+			
+			// Create a new object from a class (template)
+			const student_1 = new Student("A00111222", "Jake", "The Dog", new Date(1994, 11, 01));
+			const student_2 = new Student("A00111223", "Finn", "The Human", new Date(1999, 04, 23));
+
+			// Call the full_name method (function) of the object above
+			// Methods are functions that are defined in the classes
+			// objects are built from.
+			document.querySelector("#student-1").innerHTML = student_1.full_name() + " is " + student_1.get_age();
+			document.querySelector("#student-2").innerHTML = student_2.full_name() + " is " + student_2.get_age();
+
+		});
+
+	</script>
+</body>
+</html>

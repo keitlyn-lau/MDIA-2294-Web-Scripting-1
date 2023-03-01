@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>MDIA 2294</title>	
+	
+</head>
+<body>
+
+	<h1>MDIA 2294: WK9_EX1</h1>
+	
+	<div>Student 1: <span id="student-1"></span></div>
+	<div>Student 2: <span id="student-2"></span></div>
+
+    <div><button id="show-students">Show Students</button></div>
+
+	<script src="Student.js"></script>
+	<script>
+
+		document.querySelector("#show-students").addEventListener("click", () => {
+			
+			const student_1 = new Student("A00111222", "Bob", "Smith", new Date(1994, 11, 01));
+
+			document.querySelector("#student-1").innerHTML = student_1.full_name() + " is " + student_1.get_age();
+
+			const student_2 = new Student("A00111222", "Fred", "Lee", new Date(1994, 01, 03));
+
+			document.querySelector("#student-2").innerHTML = student_2.full_name() + " is " + student_2.get_age();
+
+
+		});
+
+	</script>
+</body>
+</html>

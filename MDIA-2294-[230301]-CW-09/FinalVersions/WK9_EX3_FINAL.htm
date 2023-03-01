@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>MDIA 2294: WK9_EX3</title>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>	
+
+    <script>
+
+    // this makes sure the document loads entirely
+    $(function() {
+
+        // generic listener for all textboxes
+        $("input[type='number']").change(function(){
+
+            // test1: get the value via this
+            //window.alert($(this).val());
+
+            // test 2: use the attribute to find the span
+            // $("#" + $(this).data("result")).html("new value");
+
+            // test 3: write into the span the current value
+            $("#" + $(this).data("result")).html("new value is " + $(this).val());
+
+
+
+        });
+
+    });
+
+
+    </script>
+
+</head>
+<body>
+
+	<h1>MDIA 2294: WK9_EX3</h1>
+	
+
+    <div><input id="test-1" type="number" value="5" data-result="line-1-result"> <span id="line-1-result"></span></div>
+    <div><input id="test-2" type="number" value="10" data-result="line-2-result"> <span id="line-2-result"></span></div>
+    <div><input id="test-3" type="number" value="50" data-result="line-3-result"> <span id="line-3-result"></span></div>
+    <div><input id="test-4" type="text" value="test" data-result="line-4-result"> <span id="line-4-result"></span></div>
+
+</body>
+</html>
